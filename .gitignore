@@ -1,0 +1,14 @@
+# ===== Ignored =====
+.claude/
+archive/
+image/
+temp/
+*.md
+
+# ===== Large files (>50MB) =====
+12_Crime_LA/dataset/Crime_Data_from_2020_to_Present.csv
+
+# ===== Tracked (intentionally NOT ignored) =====
+# dataset/        -> tracked
+# *.pbix          -> tracked
+!/README.md
