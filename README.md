@@ -87,3 +87,4 @@ doc_intelligence/
 ## Author
 
 Yuttapong M. — [linkedin.com/in/yuttapong-m](https://www.linkedin.com/in/yuttapong-m/)
+
