@@ -1,12 +1,89 @@
-# Data Science Portfolio
+# Document Intelligence Pipeline
 
-## Projects
+An automated document analysis app for Thai business documents — extracts text, identifies entities, classifies document type, and summarizes key information.
 
-| # | Project | Description | Slides | Report | Code |
-| --- | --- | --- | --- | --- | --- |
-| 01 | Recommendation System — Skincare (GCP) | Recommendation System on 1M-row, high-dimensional data for skincare products using CF, CBF, and hybrid model deployed with PySpark on GCP. MAP@5 hybrid (α=0.7) = 0.23 | [Canva](https://canva.link/jg8xvpyyfgfeus1) | [Report](https://drive.google.com/file/d/1597i9pDy5ZW1kwAyKd0x1lDoMQ9zSX7j/view?usp=sharing) | [Code](https://drive.google.com/file/d/1q50QLAjPNSPNRPImb0Cf8bQfgxsgGXlm/view?usp=sharing) |
-| 02 | Clustering & Marketing Strategy — Grocery | K-means + PCA clustering on annual behavioral records of a large membership grocery store for customer segmentation and targeted marketing campaigns | [Canva](https://canva.link/hknpp2zjkwv795h) | | [Code](https://drive.google.com/file/d/15YMdaDu9T5FtTSbM1m5Vag_e2ihoO5IW/view?usp=sharing) |
-| 03 | Portfolio Management — S&P 500 | Portfolio management on 10 S&P 500 stocks using Carhart 4-Factor model, ARIMA prediction, and GARCH-adjusted dynamic trading. Best strategy gains >10% vs buy-and-hold benchmark | [Canva](https://canva.link/8d47tezaa5hk5yl) | [Report](https://drive.google.com/file/d/1a0HL44C2AUtd88Wp9PDDK7kx0d6xaWN2/view?usp=sharing) | [Code](https://drive.google.com/file/d/11obe9e1MUCAABJE-kin0kzsMhtRIsAqN/view?usp=sharing) |
-| 04 | Time Series Forecasting — House Price | Weekly house price prediction using univariate (ETS, ARIMA, SARIMA) and multivariate (ARIMAX) models in R. MAPE min 2.131%, RMSE min 2.986 | [Canva](https://canva.link/r4n3pvq8a2m8qjw) | [YouTube](https://youtu.be/_H_DCNGjhYw) | [Code](https://rpubs.com/khala1391/1377582) |
-| 05 | Recommendation System — Books | Recommendation platform for readers, publishers, and bookstores using CF, CBF, and hybrid model (8 submodels based on metadata, preferences, and behaviors). Includes business insights for marketing strategy and inventory management | [Canva](https://canva.link/3v044rm6t0h1yuo) | [Report](https://github.com/khala1391/100_FinalProject_RecSys/blob/53620dfa1c8a4c66b108a33fd0f2c3ad75187ab8/document/GreedRoute%20Report.pdf) | [Code](https://github.com/khala1391/100_FinalProject_RecSys) |
-| 06 | Deep Learning Stock Forecasting | 10-day stock forecasting via 876 experiments (TCN, N-BEATS, NHiTS, TiDE); NHiTS selected for best accuracy and efficiency. Features engineered from market data and news sentiment. Transaction cost-aware trading strategy achieved +8.38% return, ~30% outperformance vs buy-and-hold in a declining market | [PPTX](https://drive.google.com/file/d/1r48CBDTL6PNQ1bi0i2KCzhcm3mg0iAlw/view?usp=drive_link) | [Report](https://drive.google.com/file/d/1dGuqwpZ7jk5wmnfSsmmDGIhy46hiL1au/view?usp=drive_link) | [Code](https://drive.google.com/drive/folders/1dFisrK8As1yXKgMyIBtPbWQjPG4R0ZMs?usp=drive_link) |
+**Live Demo:** [doc-intelligence.streamlit.app](https://datascienceportfolio-bfssupkanpzfwcsh4inie3.streamlit.app)
+
+---
+
+## Features
+
+| Stage | Description |
+| --- | --- |
+| **OCR** | Extracts text from PDF and images (PNG, JPG) using EasyOCR — supports both text-based and scanned documents |
+| **NER** | Identifies named entities: dates, amounts, organizations, persons, addresses, tax IDs, invoice numbers |
+| **Classification** | Classifies document type (invoice, contract, report, etc.) with confidence score via Gemini AI |
+| **Summarization** | Extracts key parties, important dates, monetary values, and a plain-language summary |
+
+---
+
+## Tech Stack
+
+- **Frontend:** Streamlit
+- **OCR:** EasyOCR
+- **NLP/NER:** PyThaiNLP
+- **AI (Classification & Summarization):** Google Gemini 2.5 Flash
+- **PDF Processing:** PyMuPDF
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- Python 3.11+
+- Google Gemini API Key — get one free at [aistudio.google.com](https://aistudio.google.com)
+
+### Installation
+
+```bash
+git clone https://github.com/khala1391/DS_Document-Intelligence-Pipeline.git
+cd DS_Document-Intelligence-Pipeline
+python -m venv .venv
+.venv\Scripts\activate        # Windows
+pip install -r requirements.txt
+```
+
+### Run
+
+```bash
+streamlit run app.py
+```
+
+Open `http://localhost:8501`, enter your Gemini API Key in the sidebar, upload a document, and click **ประมวลผล**.
+
+---
+
+## Usage
+
+1. **Enter API Key** — paste your Google Gemini API Key in the sidebar
+2. **Upload a document** — PDF, PNG, or JPG (first page only)
+3. **Click ประมวลผล** — the pipeline runs OCR → NER → Classification → Summary
+4. **View results** across 4 tabs: OCR / NER / Classification / Summary
+5. **Download** results as JSON or TXT from the top bar
+
+No document? Use the **ดูตัวอย่างผลลัพธ์** button to preview sample outputs for an invoice, employment contract, or operations report.
+
+---
+
+## Project Structure
+
+```text
+doc_intelligence/
+├── app.py                  # Main Streamlit app
+├── requirements.txt
+├── pipeline/
+│   ├── ocr.py              # EasyOCR wrapper
+│   ├── ner.py              # Named entity recognition
+│   ├── classifier.py       # Document classification via Gemini
+│   └── summarizer.py       # Document summarization via Gemini
+└── utils/
+    ├── display.py          # Entity highlighting & rendering
+    └── pdf_utils.py        # PDF text extraction & conversion
+```
+
+---
+
+## Author
+
+Yuttapong M. — [linkedin.com/in/yuttapong-m](https://www.linkedin.com/in/yuttapong-m/)
