@@ -312,7 +312,25 @@ with st.sidebar:
 
 st.markdown("""
 <style>
-/* Tab bar background */
+/* ── Sidebar spacing ── */
+section[data-testid="stSidebar"] .block-container {
+    padding-top: 1rem !important;
+}
+section[data-testid="stSidebar"] .element-container {
+    margin-bottom: 0 !important;
+}
+section[data-testid="stSidebar"] hr {
+    margin: 0.4rem 0 !important;
+}
+section[data-testid="stSidebar"] h1 {
+    margin-bottom: 0 !important;
+    font-size: 1.3rem !important;
+}
+section[data-testid="stSidebar"] .stTextInput {
+    margin-bottom: 0 !important;
+}
+
+/* ── Tab bar background ── */
 div[data-baseweb="tab-list"] {
     gap: 8px !important;
     background: #CBD5E1 !important;
