@@ -2,7 +2,7 @@
 
 An automated document analysis app for Thai business documents — extracts text, identifies entities, classifies document type, and summarizes key information.
 
-**Live Demo:** [doc-intelligence.streamlit.app](https://datascienceportfolio-bfssupkanpzfwcsh4inie3.streamlit.app)
+**Live Demo:** [doc-intelligence.streamlit.app](https://mmplb4mnbg5appk3vdxeryp.streamlit.app/)
 
 ---
 
